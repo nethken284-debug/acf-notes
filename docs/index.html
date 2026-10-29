@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>F.3 ACF 必背筆記</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Mono:wght@500;600&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: one ledger-paper column; teacher's own colour code — Assets red, Capital green, Liabilities blue */
+:root{
+  --paper:#f5f7f6; --sheet:#ffffff; --ink:#1b222c; --muted:#5d6875; --rule:#d5dde0; --rule-strong:#9aa7ad;
+  --a:#c2362f; --a-bg:#fbe9e7; --c:#287a45; --c-bg:#e5f3ea; --l:#2353a3; --l-bg:#e6edfa;
+  --hl:#ffe36e; --ok:#287a45; --bad:#c2362f; --chip:#eef2f2;
+  --f-display:"Archivo","Noto Sans TC",system-ui,sans-serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --f-num:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#12161b; --sheet:#1a2027; --ink:#e6ebef; --muted:#9aa6b2; --rule:#2c353f; --rule-strong:#55616d;
+  --a:#ff8a80; --a-bg:#3a1f1e; --c:#74d494; --c-bg:#183324; --l:#8db4ff; --l-bg:#1a2742;
+  --hl:#6b5a12; --ok:#74d494; --bad:#ff8a80; --chip:#222a33; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#12161b; --sheet:#1a2027; --ink:#e6ebef; --muted:#9aa6b2; --rule:#2c353f; --rule-strong:#55616d;
+  --a:#ff8a80; --a-bg:#3a1f1e; --c:#74d494; --c-bg:#183324; --l:#8db4ff; --l-bg:#1a2742;
+  --hl:#6b5a12; --ok:#74d494; --bad:#ff8a80; --chip:#222a33; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:860px;margin:0 auto;padding-block:8px 80px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.25;margin:0}
+h2{font-size:1.55rem;font-weight:800}
+h3{font-size:1.1rem;font-weight:700;margin-top:6px}
+p{margin:0}
+.num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+.en{font-family:var(--f-display);font-weight:600}
+.muted{color:var(--muted)}
+.A{color:var(--a)} .C{color:var(--c)} .L{color:var(--l)}
+
+/* hero */
+.hero{padding-block:28px 18px;display:grid;gap:14px}
+.eyebrow{font-family:var(--f-num);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(1.8rem,5vw,2.6rem);font-weight:900;font-family:var(--f-body)}
+.eq{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:stretch;gap:8px;margin-top:6px}
+.eq .t{border-radius:10px;padding:12px 10px;text-align:center;display:grid;gap:2px;align-content:center;min-width:0}
+.eq .t b{font-family:var(--f-display);font-weight:800;font-size:clamp(.95rem,3.4vw,1.35rem);letter-spacing:.04em}
+.eq .t small{font-size:.78rem;line-height:1.35}
+.eq .op{font-family:var(--f-display);font-weight:800;font-size:1.6rem;align-self:center;color:var(--muted)}
+.tA{background:var(--a-bg);color:var(--a)} .tC{background:var(--c-bg);color:var(--c)} .tL{background:var(--l-bg);color:var(--l)}
+.hero .how{font-size:.92rem;color:var(--muted)}
+
+/* sticky nav */
+nav.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule);
+  margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding:8px max(16px,env(safe-area-inset-right,0px)) 8px max(16px,env(safe-area-inset-left,0px))}
+.bar .row{max-width:860px;margin:0 auto;display:flex;gap:8px;align-items:center}
+.bar .links{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.bar .links::-webkit-scrollbar{display:none}
+.bar a{white-space:nowrap;text-decoration:none;color:var(--ink);background:var(--chip);border-radius:999px;padding:4px 11px;font-size:.85rem}
+.bar a:hover{background:var(--rule)}
+.toggle{white-space:nowrap;border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:4px 12px;font:inherit;font-size:.85rem;cursor:pointer}
+.toggle[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+
+/* sections */
+section{padding-block:34px 6px;display:grid;gap:16px;scroll-margin-top:60px}
+.chap{padding-block:40px 0}
+.chap .eyebrow{color:var(--ink)}
+.chap h2{font-size:1.9rem}
+.sheet{background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:18px;display:grid;gap:12px;min-width:0}
+ul.pts{margin:0;padding-left:1.2em;display:grid;gap:6px}
+ul.pts li::marker{color:var(--muted)}
+.must{display:inline-block;font-family:var(--f-num);font-size:.7rem;letter-spacing:.08em;background:var(--ink);color:var(--paper);border-radius:4px;padding:1px 6px;vertical-align:2px;margin-left:6px}
+.def{font-size:1.02rem;border-left:3px solid var(--ink);padding-left:12px}
+
+/* keyword self-test */
+.k{font-weight:700;background:linear-gradient(transparent 62%,var(--hl) 62%)}
+body.cover .k{color:transparent;background:none;border-bottom:2px solid var(--muted);cursor:pointer;border-radius:2px;user-select:none}
+body.cover .k.show{color:var(--ink);background:linear-gradient(transparent 62%,var(--hl) 62%);border-bottom-color:transparent}
+
+/* two-column compare */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two>div{min-width:0}
+.box{border:1px solid var(--rule);border-radius:10px;padding:14px;display:grid;gap:8px;align-content:start}
+.box h3{margin:0}
+.box.bA{border-color:var(--a)} .box.bL{border-color:var(--l)}
+
+/* functions flow */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;counter-reset:f}
+.flow>div{border:1px solid var(--rule);border-radius:10px;padding:12px;display:grid;gap:4px;align-content:start;position:relative;min-width:0}
+.flow>div::before{counter-increment:f;content:counter(f);font-family:var(--f-num);font-weight:600;font-size:.8rem;color:var(--muted)}
+.flow b{font-family:var(--f-display)}
+.flow small{line-height:1.5}
+
+/* order lists */
+ol.order{margin:0;padding-left:1.4em;display:grid;gap:2px}
+.arrowcap{font-size:.82rem;color:var(--muted)}
+
+/* tables */
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{border-bottom:1px solid var(--rule);padding:8px 8px;text-align:left;vertical-align:top}
+th{font-family:var(--f-display);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.chipA,.chipC,.chipL{display:inline-block;border-radius:5px;padding:0 7px;font-size:.84rem;font-weight:700;white-space:nowrap;margin:1px 2px 1px 0}
+.chipA{background:var(--a-bg);color:var(--a)} .chipC{background:var(--c-bg);color:var(--c)} .chipL{background:var(--l-bg);color:var(--l)}
+.drcr{font-family:var(--f-num);font-weight:600;font-size:.85rem;line-height:1.6;white-space:nowrap}
+.drcr .cr{padding-left:1.6em}
+
+/* steps */
+.steps{display:flex;flex-wrap:wrap;gap:8px}
+.steps span{background:var(--chip);border-radius:8px;padding:6px 10px;font-size:.9rem}
+
+/* SOFP */
+.sofp{font-size:.93rem;min-width:420px}
+.sofp td{border:none;padding:3px 6px}
+.sofp .h td{font-weight:700;padding-top:12px}
+.sofp .amt{text-align:right;width:90px;font-family:var(--f-num);font-variant-numeric:tabular-nums}
+.sofp .ul{border-bottom:1px solid var(--ink)}
+.sofp .dbl{border-bottom:3px double var(--ink);font-weight:700}
+.sofp .title td{text-align:center;font-weight:700;padding-bottom:0}
+.sofp .tag{font-family:var(--f-num);font-size:.75rem;color:var(--muted)}
+.sofp .tagin{color:var(--a);font-weight:500}
+.sofp .uline{border-bottom:1.5px solid var(--ink)}
+.lab{display:inline-block;font-family:var(--f-display);font-weight:800;font-size:.8rem;border-radius:4px;padding:0 6px;letter-spacing:.04em}
+.lA{background:var(--a-bg);color:var(--a)} .lC{background:var(--c-bg);color:var(--c)} .lL{background:var(--l-bg);color:var(--l)} .lB{border:1.5px solid var(--ink);border-radius:999px}
+.build td:last-child{width:52px;padding-left:8px}
+.build td.fut{opacity:.1}
+.build td.cur{background:var(--hl)}
+.stepbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.sbtn{font:inherit;font-size:.9rem;background:var(--ink);color:var(--paper);border:1.5px solid var(--ink);border-radius:999px;padding:5px 14px;cursor:pointer}
+.sbtn.ghost{background:transparent;color:var(--ink)}
+.sbtn:disabled{opacity:.35;cursor:default}
+.stepnote{min-height:3.4em;background:var(--chip);border-radius:9px;padding:10px 12px;font-size:.95rem}
+.hint{display:flex;flex-wrap:wrap;gap:8px}
+.hint span{border:1.5px dashed var(--rule-strong);border-radius:8px;padding:6px 12px;font-family:var(--f-num);font-weight:600}
+
+/* T-accounts */
+.taccts{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.ta{font-size:.82rem;min-width:0}
+.ta .nm{text-align:center;font-weight:700;font-family:var(--f-display);border-bottom:2px solid var(--ink);padding-bottom:2px}
+.ta .sides{display:grid;grid-template-columns:1fr 1fr}
+.ta .sides>div{padding:4px 6px;min-height:46px;display:grid;align-content:start;gap:1px;min-width:0}
+.ta .sides>div:first-child{border-right:2px solid var(--ink)}
+.ta .ln{display:grid;grid-template-columns:auto 1fr auto;gap:4px}
+.ta .ln .d{color:var(--muted);font-family:var(--f-num)}
+.ta .ln .p{overflow-wrap:break-word;min-width:0}
+.ta .ln .m{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+.ta .lbl{display:grid;grid-template-columns:1fr 1fr;font-family:var(--f-num);font-size:.68rem;color:var(--muted);letter-spacing:.06em}
+.ta .lbl span:last-child{text-align:right}
+
+.rule3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rule3 .ta .sides>div{font-family:var(--f-display);font-size:1.4rem;font-weight:800;text-align:center;min-height:auto;padding:6px}
+
+/* practice */
+.q{display:grid;gap:8px}
+.q .stem{font-weight:500}
+.opts{display:grid;gap:6px}
+.opt{text-align:left;font:inherit;font-size:.95rem;border:1.5px solid var(--rule);background:var(--sheet);color:var(--ink);border-radius:9px;padding:8px 12px;cursor:pointer;display:flex;gap:10px}
+.opt:hover{border-color:var(--rule-strong)}
+.opt .let{font-family:var(--f-num);font-weight:600;color:var(--muted)}
+.opt.right{border-color:var(--ok);background:var(--c-bg)}
+.opt.wrong{border-color:var(--bad);background:var(--a-bg)}
+.opt:disabled{cursor:default}
+.why{font-size:.9rem;color:var(--muted)}
+.score{font-family:var(--f-num);font-size:.9rem;color:var(--muted)}
+button:focus-visible,.k:focus-visible,a:focus-visible{outline:3px solid var(--l);outline-offset:2px}
+
+.sort .item{font-family:var(--f-display);font-weight:700;font-size:1.3rem;text-align:center;padding:16px 8px;border:2px dashed var(--rule-strong);border-radius:10px}
+.bins{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.bin{font:inherit;font-size:.82rem;line-height:1.3;border-radius:9px;padding:10px 4px;cursor:pointer;border:1.5px solid transparent;font-weight:700}
+.bin.nA{background:var(--a-bg);color:var(--a)} .bin.nL{background:var(--l-bg);color:var(--l)} .bin.nC{background:var(--c-bg);color:var(--c)}
+.bin:hover{border-color:currentColor}
+.fb{min-height:1.7em;font-size:.92rem}
+.fb.ok{color:var(--ok)} .fb.no{color:var(--bad)}
+.nextbtn{justify-self:start;font:inherit;font-size:.9rem;background:var(--ink);color:var(--paper);border:none;border-radius:999px;padding:6px 16px;cursor:pointer}
+.tx{font-size:1.02rem;border-left:3px solid var(--rule-strong);padding-left:12px}
+.src{font-family:var(--f-num);font-size:.75rem;color:var(--muted)}
+
+footer{padding-block:40px 0;font-size:.82rem;color:var(--muted)}
+
+@media (max-width:640px){
+  .two,.rule3{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr 1fr}
+  .bins{grid-template-columns:repeat(3,1fr)}
+  .eq{grid-template-columns:1fr;gap:4px}
+  .eq .op{justify-self:center;font-size:1.2rem;line-height:1}
+  .sheet{padding:14px}
+  table.cards,table.cards tbody,table.cards tr,table.cards td{display:block}
+  table.cards tr:first-child{display:none}
+  table.cards tr{border-bottom:1px solid var(--rule);padding-block:10px}
+  table.cards td{border:none;padding:1px 0}
+  table.cards td:first-child{font-weight:700}
+  table.cards .chipA,table.cards .chipC,table.cards .chipL{white-space:normal}
+  .drcr{white-space:normal}
+  .sofp{min-width:0}
+  .sofp .amt{width:58px}
+  .sofp .tag{display:block}
+  .sofp .tagin{display:inline}
+  .build td:last-child{width:40px;padding-left:4px}
+  .ta{font-size:.76rem}
+  .ta .sides>div{padding:4px 4px}
+}
+@media (prefers-reduced-motion:no-preference){.opt,.bin,.k{transition:background .15s,border-color .15s,color .15s}}
+</style>
+
+<div class="wrap">
+<header class="hero">
+  <div class="eyebrow">F.3 ACF · Ch.1 + Ch.2 · Prepared by CTH 講義重點</div>
+  <h1>會計必背筆記</h1>
+  <div class="eq" aria-label="Accounting equation">
+    <div class="t tA"><b>ASSETS</b><small>資產<br>Resources of the business</small></div>
+    <div class="op">=</div>
+    <div class="t tC"><b>CAPITAL</b><small>資本<br>Resources owed to owner</small></div>
+    <div class="op">+</div>
+    <div class="t tL"><b>LIABILITIES</b><small>負債<br>Resources owed to outsiders</small></div>
+  </div>
+  <p class="how">顏色跟老師的寫法一樣：<span class="A">紅＝Assets</span>、<span class="C">綠＝Capital</span>、<span class="L">藍＝Liabilities</span>。黃色底的字是填充題答案，一定要背。按上面「遮住重點字」可以自己默。</p>
+</header>
+
+<nav class="bar" aria-label="章節">
+  <div class="row">
+    <div class="links">
+      <a href="#a">1A 分別</a><a href="#b">1B 功能</a><a href="#c">1C 概念</a><a href="#d">1D 等式</a><a href="#e">1E 財務狀況表</a><a href="#p1x">1 練習</a>
+      <a href="#dr">2 借貸規則</a><a href="#t">2 T 帳</a><a href="#g">2 貨物</a><a href="#p">2 練習</a>
+    </div>
+    <button class="toggle" id="coverBtn" aria-pressed="false">遮住重點字</button>
+  </div>
+</nav>
+
+<!-- ================= CHAPTER 1 ================= -->
+<div class="chap"><div class="eyebrow">Chapter 1</div><h2>Introduction to Accounting</h2></div>
+
+<section id="a">
+  <div class="eyebrow">Ch.1 · A</div>
+  <h2>Book-keeping 與 Accounting 的分別</h2>
+  <div class="two">
+    <div class="box"><h3>Book-keeping 簿記</h3>
+      <p>refers to the process of recording <span class="k">transactions</span> and keeping financial records.</p>
+      <p class="muted">＝ 只是「記低」交易。</p></div>
+    <div class="box"><h3>Accounting 會計</h3>
+      <p>provides financial information about an <span class="k">economic entity</span>, which is useful for <span class="k">decision</span>-making.</p>
+      <p class="muted">＝ 提供資料幫人做決定。Economic entity 例如 business company、NGO。</p></div>
+  </div>
+  <p class="muted">會計資料的用途：calculate profit / loss、calculate cash，再幫老闆做決定，例如 pay tax、buy shares、develop new market、find partners。</p>
+</section>
+
+<section id="b">
+  <div class="eyebrow">Ch.1 · B</div>
+  <h2>Functions in accounting 會計的 4 個功能 <span class="must">MUST</span></h2>
+  <p class="muted">次序要記住，第一步一定是 Recording。</p>
+  <div class="flow">
+    <div><b>Recording transactions</b><small>All transactions are carefully recorded and become <span class="k">accounting data</span>.</small></div>
+    <div><b>Classifying data</b><small>Classified according to their <span class="k">nature</span>, e.g. <span class="k">Assets</span>, <span class="k">Liabilities</span> and <span class="k">Capital</span>.</small></div>
+    <div><b>Summarizing data</b><small>Prepare financial <span class="k">statements</span>, e.g. <span class="k">Income Statement</span> and <span class="k">Statement of Financial Position</span>.</small></div>
+    <div><b>Communicating information</b><small>Reports to users such as <span class="k">owners</span> and <span class="k">managers</span>; useful for <span class="k">long-term plans</span> e.g. opening a new plant.</small></div>
+  </div>
+  <p class="def">Accounting is an <span class="k">information system</span> that <span class="k">records, processes and communicates</span> financial information about an economic entity in order to meet users' needs.</p>
+</section>
+
+<section id="c">
+  <div class="eyebrow">Ch.1 · C</div>
+  <h2>Basic accounting concepts 兩個基本概念</h2>
+  <div class="sheet">
+    <h3>1. Business entity concept 業務個體概念 <span class="must">MUST</span></h3>
+    <ul class="pts">
+      <li>A <span class="k">business</span> is treated as an <b>entity separate</b> from its <span class="k">owner</span>.（公司同老闆係兩個人）</li>
+      <li>Only <b>transactions affecting the <span class="k">business</span></b> should be recorded in the books of the business.</li>
+      <li>Accounting records should be kept <span class="k">separately</span> for <b>each</b> firm.</li>
+    </ul>
+    <table>
+      <tr><th style="width:40px"></th><th>Application 應用</th></tr>
+      <tr><td class="bad A">✗</td><td><span class="k">Personal</span> transactions of the owner should <b>NOT</b> be recorded.</td></tr>
+      <tr><td class="A">✗</td><td>Records should <b>NOT</b> be kept <span class="k">jointly</span> for two or more firms.（合埋記）</td></tr>
+      <tr><td class="C">✓</td><td>Only when the owner brings additional <span class="k">capital</span> into the firm, or makes <span class="k">drawings</span> (takes money away), it is recorded.</td></tr>
+    </table>
+    <p class="muted">例：Mr. Siu 從公司拿現金私用 → 要記（drawings）。他私人投資蝕錢、私人借錢、用自己錢買私人用品 → 不記。</p>
+  </div>
+  <div class="sheet">
+    <h3>2. Money measurement concept 貨幣計量概念</h3>
+    <ul class="pts">
+      <li>Only transactions capable of being expressed in <span class="k">monetary</span> terms are recorded.</li>
+      <li><span class="k">Qualitative</span> items should <b>NOT</b> be recorded. 不能用錢計的都不記：
+        <ul class="pts" style="margin-top:4px">
+          <li>Good <span class="k">reputation</span> of a company</li>
+          <li>The <span class="k">experience</span> of staff（≠ salary 人工，人工要記）</li>
+          <li>The relationship with <span class="k">customers</span></li>
+        </ul></li>
+    </ul>
+    <p class="muted">例：Bank deposit 可以用錢表示 → 記；Staff loyalty、Business image、Customers' relationship → 不記。</p>
+  </div>
+</section>
+
+<section id="d">
+  <div class="eyebrow">Ch.1 · D</div>
+  <h2>Accounting Equation 會計等式 <span class="must">MUST</span></h2>
+  <div class="sheet">
+    <p style="font-family:var(--f-display);font-weight:800;font-size:1.15rem"><span class="A">Assets</span> = <span class="C">Capital</span> + <span class="L">Liabilities</span></p>
+    <p class="muted">變形都要識：<span class="num">Assets − Liabilities = Capital</span>；<span class="num">Non-current assets + Current assets = Capital + Total liabilities</span>。<br>✗ 錯的寫法：Total liabilities + Total assets = Capital。</p>
+  </div>
+
+  <h3 class="A">1. Assets 資產</h3>
+  <p>Assets are the productive <span class="k">resources</span> of a business which are expected to <span class="k">benefit</span> the business in the <b>future</b>.</p>
+  <div class="two">
+    <div class="box bA"><h3>Non-current assets 非流動資產</h3>
+      <ul class="pts">
+        <li><span class="k">Long</span>-term, benefit the business for <b>more than 1 year</b></li>
+        <li><span class="k">Physical</span> substance</li>
+        <li><span class="k">Material</span> in amount</li>
+        <li>Buy for <b>use</b> in the <span class="k">operation</span> of business, <b>NOT for <span class="k">resale</span></b></li>
+      </ul>
+      <p class="arrowcap">例子（by durability，最耐用排先）</p>
+      <ol class="order">
+        <li>Land and Buildings</li><li>Premises 物業</li><li>Plant and Machinery 工廠及機器</li>
+        <li>Furniture and Fixtures</li><li>Office Equipment</li><li>Motor Vans (Motor Vehicles)</li>
+      </ol>
+      <p class="arrowcap">排序方法：Durability（more → less durable）、Purchase price（higher → lower）、Physical size（larger → smaller）、Importance in decision making（more → less important）</p>
+    </div>
+    <div class="box bA"><h3>Current assets 流動資產</h3>
+      <ul class="pts">
+        <li><span class="k">Short</span>-term, to be sold <b>within 1 year</b></li>
+        <li>More likely to be converted into <span class="k">cash</span></li>
+      </ul>
+      <p class="arrowcap">例子（by liquidity，最難變現金排先）</p>
+      <ol class="order">
+        <li>Inventory 存貨（unsold goods）</li>
+        <li>Accounts Receivable 應收帳款<br><small class="muted">我們以 credit（賒數）賣貨或賣 non-current assets 給客，客欠我們錢</small></li>
+        <li>Bank（cash at bank）</li>
+        <li>Cash（cash in hand）</li>
+      </ol>
+    </div>
+  </div>
+
+  <h3 class="L">2. Liabilities 負債</h3>
+  <p>Liabilities are debts of business <b>owed to <span class="k">outsiders</span></b> and not to the owners.</p>
+  <div class="two">
+    <div class="box bL"><h3>Non-current liabilities</h3>
+      <p>Amounts due <span class="k">over</span> 12 months（12 個月後先還）</p>
+      <ul class="pts"><li>Bank loan</li><li>Loan from XXX</li></ul></div>
+    <div class="box bL"><h3>Current liabilities</h3>
+      <p>Amounts due <span class="k">within</span> 12 months</p>
+      <ul class="pts"><li>Accounts payable 應付帳款<br><small class="muted">我們以 credit 向 supplier 買貨或買 non-current assets，我們欠人錢</small></li></ul></div>
+  </div>
+
+  <h3 class="C">3. Capital 資本</h3>
+  <p>Capital is the <span class="k">investment</span> of the business to its <span class="k">owner</span> since the <b>owners have contributed cash or other assets</b> to the business.</p>
+
+  <h3 style="margin-top:14px">交易對等式的影響（8 個 Case）<span class="must">MUST</span></h3>
+  <div class="steps"><span>① 哪兩個 item 受影響？</span><span>② 是 Assets／Capital／Liabilities？</span><span>③ ＋ 定 −？</span></div>
+  <div class="tbl"><table class="cards">
+    <tr><th>Case</th><th>例子（Chan House, 2021）</th><th>影響</th></tr>
+    <tr><td>1 Owner contributed assets</td><td>Mr. Chan 存 $5 000 cheque 入公司 / 放 $2 000 cash 入公司</td><td><span class="chipA">Bank +5 000</span><span class="chipC">Capital +5 000</span><br><span class="chipA">Cash +2 000</span><span class="chipC">Capital +2 000</span></td></tr>
+    <tr><td>2 Bought an asset in cash / by cheque</td><td>Bought machines for $1 000 in cash</td><td><span class="chipA">Machines +1 000</span><span class="chipA">Cash −1 000</span></td></tr>
+    <tr><td>3 Bought an asset on credit</td><td>Bought machines on credit from Marco Lau $1 500</td><td><span class="chipA">Machines +1 500</span><span class="chipL">Accounts payable: Marco Lau +1 500</span></td></tr>
+    <tr><td>4 Sold an asset in cash / by cheque</td><td>Sold machines costing $500 by cheque</td><td><span class="chipA">Machines −500</span><span class="chipA">Bank +500</span></td></tr>
+    <tr><td>5 Sold an asset on credit</td><td>Sold machines costing $1 200 on credit to Woody Chan</td><td><span class="chipA">Machines −1 200</span><span class="chipA">Accounts receivable: Woody Chan +1 200</span></td></tr>
+    <tr><td>6 Repaid a liability to suppliers</td><td>Repaid $500 owed to Marco Lau by cheque</td><td><span class="chipA">Bank −500</span><span class="chipL">Accounts payable: Marco Lau −500</span></td></tr>
+    <tr><td>7 Received settlement from customers</td><td>Woody Chan paid $400 in cash</td><td><span class="chipA">Cash +400</span><span class="chipA">Accounts receivable: Woody Chan −400</span></td></tr>
+    <tr><td>8 Borrowed money from outsiders (repayable over 1 year)</td><td>Borrowed $1 000 loan from Barry Chow, deposited into bank</td><td><span class="chipA">Bank +1 000</span><span class="chipL">Loan from Barry Chow +1 000</span></td></tr>
+  </table></div>
+  <p class="muted">小心：cheque → 用 <b>Bank</b>；cash → 用 <b>Cash</b>。On credit 買 → Accounts payable；On credit 賣 → Accounts receivable。</p>
+</section>
+
+<section id="e">
+  <div class="eyebrow">Ch.1 · E</div>
+  <h2>Statement of Financial Position 財務狀況表 <span class="must">MUST</span></h2>
+  <p class="def">It is the <span class="k">financial statement</span> showing the <span class="k">financial position</span>（remaining balance）of a business firm as at a <span class="k">certain date</span>（year-end）.</p>
+
+  <h3>1. 格式（老師範本，照住畫）</h3>
+  <div class="sheet">
+    <div class="tbl"><table class="sofp">
+      <tr class="title"><td colspan="3">XXX <span class="tag tagin">← name of the owner</span></td></tr>
+      <tr class="title"><td colspan="3"><span class="uline">Statement of Financial Position as at 31 December 2021</span> <span class="tag tagin">← year-end</span></td></tr>
+      <tr><td></td><td class="amt">$</td><td class="amt">$</td></tr>
+      <tr class="h A"><td>Non-current assets <span class="tag">（by order）</span></td><td></td><td></td></tr>
+      <tr><td>Land &amp; Buildings</td><td></td><td class="amt">XXX</td></tr>
+      <tr><td>Premises</td><td></td><td class="amt">XXX</td></tr>
+      <tr><td>Plant and Machinery</td><td></td><td class="amt">XXX</td></tr>
+      <tr><td>Fixtures and Fittings</td><td></td><td class="amt">XXX</td></tr>
+      <tr><td>Office equipment</td><td></td><td class="amt">XXX</td></tr>
+      <tr><td>Motor Vans</td><td></td><td class="amt ul">XXX</td></tr>
+      <tr><td></td><td></td><td class="amt"><span class="lab lA">TNA</span></td></tr>
+      <tr class="h A"><td>Current assets <span class="tag">（by order）</span></td><td></td><td></td></tr>
+      <tr><td>Accounts receivable</td><td class="amt">XXX</td><td></td></tr>
+      <tr><td>Bank</td><td class="amt">XXX</td><td></td></tr>
+      <tr><td>Cash</td><td class="amt ul">XXX</td><td class="amt ul"><span class="lab lA">TCA</span></td></tr>
+      <tr><td class="tag">TNA + TCA</td><td></td><td class="amt dbl"><span class="lab lB">BAL</span></td></tr>
+      <tr class="h"><td>Financed by:</td><td></td><td></td></tr>
+      <tr class="C"><td>Capital as at 31 December 2021</td><td></td><td class="amt"><span class="lab lC">CAP</span></td></tr>
+      <tr class="h L"><td>Non-current liabilities</td><td></td><td></td></tr>
+      <tr><td>Loan from XXX</td><td class="amt">XXX</td><td></td></tr>
+      <tr><td>Bank loan</td><td class="amt ul">XXX</td><td class="amt"><span class="lab lL">TNL</span></td></tr>
+      <tr class="h L"><td>Current liabilities</td><td></td><td></td></tr>
+      <tr><td>Accounts payable</td><td></td><td class="amt ul"><span class="lab lL">TCL</span></td></tr>
+      <tr><td class="tag">CAP + TNL + TCL</td><td></td><td class="amt dbl"><span class="lab lB">BAL</span></td></tr>
+    </table></div>
+    <div class="hint"><span>TNA + TCA = BAL</span><span>CAP + TNL + TCL = BAL</span></div>
+    <ul class="pts">
+      <li><b>標題兩行</b>：老闆名字 → Statement of Financial Position <b>as at</b> 日期（year-end）。</li>
+      <li><b>兩條 $ 欄</b>：Current assets 和 Non-current liabilities 的 item 寫<b>左欄</b>，總數（TCA、TNL）寫<b>右欄</b>，跟最後一個 item 同一行。</li>
+      <li>每組最後一個數畫<b>單線</b>；兩個 BAL 畫<b>雙線</b>，而且兩個 BAL 一定相等。</li>
+      <li>Non-current assets 按 <b>durability</b> 排；Current assets 按 <b>liquidity</b> 排（Accounts receivable → Bank → Cash）。</li>
+    </ul>
+    <p class="muted">TNA 非流動資產總數 · TCA 流動資產總數 · CAP 期末資本（closing date balance）· TNL 非流動負債總數 · TCL 流動負債總數 · BAL Balance</p>
+  </div>
+
+  <h3>2. 一步步畫：Exercise 2b（Chan House，用上面 8 個 Case）</h3>
+  <div class="sheet">
+    <div class="stepbar">
+      <button class="sbtn" id="sfPrev">← 上一步</button>
+      <span class="score" id="sfNo"></span>
+      <button class="sbtn" id="sfNext">下一步 →</button>
+      <button class="sbtn ghost" id="sfStart">由第 1 步開始</button>
+    </div>
+    <p class="stepnote" id="sfNote" aria-live="polite"></p>
+    <div class="tbl"><table class="sofp build">
+      <tr class="title"><td colspan="4" data-s="1">Mr. Chan</td></tr>
+      <tr class="title"><td colspan="4" data-s="1"><span class="uline">Statement of Financial Position as at 31 January 2021</span></td></tr>
+      <tr><td data-s="1"></td><td class="amt" data-s="1">$</td><td class="amt" data-s="1">$</td><td></td></tr>
+      <tr class="h A"><td data-s="2">Non-current assets</td><td></td><td></td><td></td></tr>
+      <tr><td data-s="2">Machines <span class="tag">(1 000 + 1 500 − 500 − 1 200)</span></td><td></td><td class="amt ul" data-s="2">800</td><td data-s="2"><span class="lab lA">TNA</span></td></tr>
+      <tr class="h A"><td data-s="3">Current assets</td><td></td><td></td><td></td></tr>
+      <tr><td data-s="3">Accounts receivable <span class="tag">(1 200 − 400)</span></td><td class="amt" data-s="3">800</td><td></td><td></td></tr>
+      <tr><td data-s="3">Bank <span class="tag">(5 000 + 500 − 500 + 1 000)</span></td><td class="amt" data-s="3">6 000</td><td></td><td></td></tr>
+      <tr><td data-s="3">Cash <span class="tag">(2 000 − 1 000 + 400)</span></td><td class="amt ul" data-s="3">1 400</td><td class="amt ul" data-s="4">8 200</td><td data-s="4"><span class="lab lA">TCA</span></td></tr>
+      <tr><td></td><td></td><td class="amt dbl" data-s="5">9 000</td><td data-s="5"><span class="lab lB">BAL</span></td></tr>
+      <tr class="h"><td data-s="6">Financed by:</td><td></td><td></td><td></td></tr>
+      <tr class="C"><td data-s="6">Capital as at 31 January 2021 <span class="tag">(5 000 + 2 000)</span></td><td></td><td class="amt" data-s="6">7 000</td><td data-s="6"><span class="lab lC">CAP</span></td></tr>
+      <tr class="h L"><td data-s="7">Non-current liabilities</td><td></td><td></td><td></td></tr>
+      <tr><td data-s="7">Loan from Barry Chow</td><td></td><td class="amt" data-s="7">1 000</td><td data-s="7"><span class="lab lL">TNL</span></td></tr>
+      <tr class="h L"><td data-s="8">Current liabilities</td><td></td><td></td><td></td></tr>
+      <tr><td data-s="8">Accounts payable <span class="tag">(1 500 − 500)</span></td><td></td><td class="amt ul" data-s="8">1 000</td><td data-s="8"><span class="lab lL">TCL</span></td></tr>
+      <tr><td></td><td></td><td class="amt dbl" data-s="9">9 000</td><td data-s="9"><span class="lab lB">BAL</span></td></tr>
+    </table></div>
+    <p class="muted">只有一個 item 的組別（Machines、Loan from Barry Chow、Accounts payable），講義答案直接寫在右欄。</p>
+  </div>
+</section>
+
+<!-- ================= CH.1 PRACTICE ================= -->
+<div class="chap" id="p1x"><div class="eyebrow">Chapter 1 · Practice</div><h2>Ch.1 練習</h2></div>
+
+<section id="p1">
+  <h2>① 分類：屬於哪一類？</h2>
+  <div class="sheet sort">
+    <div class="score" id="sortScore"></div>
+    <div class="item" id="sortItem"></div>
+    <div class="bins" id="sortBins"></div>
+    <div class="fb" id="sortFb" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="p4">
+  <h2>② 交易對會計等式有什麼影響？</h2>
+  <div class="sheet">
+    <div class="score" id="efScore"></div>
+    <p class="tx" id="efTx"></p>
+    <p class="src" id="efSrc"></p>
+    <div class="opts" id="efOpts"></div>
+    <div class="fb" id="efFb" aria-live="polite"></div>
+    <button class="nextbtn" id="efNext" hidden>下一題 →</button>
+  </div>
+</section>
+
+<section id="p3">
+  <h2>③ Classwork 選擇題</h2>
+  <div id="mcq" style="display:grid;gap:14px"></div>
+</section>
+
+<!-- ================= CHAPTER 2 ================= -->
+<div class="chap"><div class="eyebrow">Chapter 2</div><h2>Double-entry System</h2></div>
+
+<section id="dr">
+  <div class="eyebrow">Ch.2 · A</div>
+  <h2>Double-entry 複式記帳 + 借貸規則 <span class="must">MUST</span></h2>
+  <p class="def">Transactions are entered in <span class="k">2</span> accounts. One is on the <span class="k">debit</span> side of one account and the <span class="k">credit</span> side of another account. Each side should be the <span class="k">same</span> amount.</p>
+  <p><b>Debit (Dr) = left 左邊</b>　·　<b>Credit (Cr) = right 右邊</b></p>
+  <div class="rule3">
+    <div class="ta"><div class="nm A">Assets</div><div class="lbl"><span>Dr</span><span>Cr</span></div><div class="sides"><div class="A">+</div><div>−</div></div></div>
+    <div class="ta"><div class="nm L">Liabilities</div><div class="lbl"><span>Dr</span><span>Cr</span></div><div class="sides"><div>−</div><div class="L">+</div></div></div>
+    <div class="ta"><div class="nm C">Capital</div><div class="lbl"><span>Dr</span><span>Cr</span></div><div class="sides"><div>−</div><div class="C">+</div></div></div>
+  </div>
+  <div class="two">
+    <div class="box"><p><b>Debit</b> means <span class="k">increase</span> in assets or <span class="k">decrease</span> in capital or <span class="k">decrease</span> in liabilities.</p></div>
+    <div class="box"><p><b>Credit</b> means <span class="k">decrease</span> in assets or <span class="k">increase</span> in capital or <span class="k">increase</span> in liabilities.</p></div>
+  </div>
+  <div class="sheet">
+    <h3>考試答題格：Double entry + Effect</h3>
+    <p class="muted">每題左邊寫 Dr／Cr，右邊兩行各圈一個。<b>Dr 那行</b>只會是 ↑Assets／↓Liabilities／↓Capital；<b>Cr 那行</b>只會是 ↓Assets／↑Liabilities／↑Capital。</p>
+    <p class="tx">例：The company borrowed a loan of $1 000 from Barry Chow and deposited it into the bank.</p>
+    <div class="tbl"><table>
+      <tr><th>Double entry</th><th>Effect（圈一個）</th></tr>
+      <tr><td class="drcr">Dr Bank 1 000</td><td>( <span class="chipA">Assets ↑</span> / Liabilities ↓ / Capital ↓ )</td></tr>
+      <tr><td class="drcr"><span class="cr">Cr Loan from Barry Chow 1 000</span></td><td>( Assets ↓ / <span class="chipL">Liabilities ↑</span> / Capital ↑ )</td></tr>
+    </table></div>
+  </div>
+  <div class="sheet">
+    <h3>常見錯誤（講義上真的寫錯過）</h3>
+    <ul class="pts">
+      <li>借錢存入銀行：<b>Dr Bank</b> / Cr Loan（不是 Dr Bank loan）。</li>
+      <li>用 cheque 還銀行貸款：<b>Dr Bank loan</b> / Cr Bank（不是 Dr Bank）。</li>
+      <li>老闆把 motor vans 放入公司：Dr Motor vans / <b>Cr Capital</b>（老闆投入的不只是錢，資產也算 capital）。</li>
+      <li>Returns outwards 是 <b>Cr</b>（Capital ↑），Returns inwards 是 <b>Dr</b>（Capital ↓）。</li>
+      <li>Bought machines in cash → 只是 Assets ↑ Assets ↓，<b>Liabilities 不變</b>。</li>
+    </ul>
+  </div>
+  <div class="tbl"><table class="cards">
+    <tr><th>Chan House 交易</th><th>Double entry</th><th>Effect</th></tr>
+    <tr><td>Mr. Chan deposited $5 000 cheque</td><td class="drcr">Dr Bank 5 000<br><span class="cr">Cr Capital 5 000</span></td><td><span class="chipA">Assets ↑</span><span class="chipC">Capital ↑</span></td></tr>
+    <tr><td>Mr. Chan deposited $2 000 cash</td><td class="drcr">Dr Cash 2 000<br><span class="cr">Cr Capital 2 000</span></td><td><span class="chipA">Assets ↑</span><span class="chipC">Capital ↑</span></td></tr>
+    <tr><td>Bought machines $1 000 in cash</td><td class="drcr">Dr Machinery 1 000<br><span class="cr">Cr Cash 1 000</span></td><td><span class="chipA">Assets ↑</span><span class="chipA">Assets ↓</span></td></tr>
+    <tr><td>Bought machines on credit from Marco Lau $1 500</td><td class="drcr">Dr Machinery 1 500<br><span class="cr">Cr Marco Lau 1 500</span></td><td><span class="chipA">Assets ↑</span><span class="chipL">Liabilities ↑</span></td></tr>
+    <tr><td>Sold machines costing $500 by cheque</td><td class="drcr">Dr Bank 500<br><span class="cr">Cr Machinery 500</span></td><td><span class="chipA">Assets ↑</span><span class="chipA">Assets ↓</span></td></tr>
+    <tr><td>Sold machines $1 200 on credit to Woody Chan</td><td class="drcr">Dr Woody Chan 1 200<br><span class="cr">Cr Machinery 1 200</span></td><td><span class="chipA">Assets ↑</span><span class="chipA">Assets ↓</span></td></tr>
+    <tr><td>Repaid $500 owed to Marco Lau by cheque</td><td class="drcr">Dr Marco Lau 500<br><span class="cr">Cr Bank 500</span></td><td><span class="chipL">Liabilities ↓</span><span class="chipA">Assets ↓</span></td></tr>
+    <tr><td>Woody Chan paid $400 in cash</td><td class="drcr">Dr Cash 400<br><span class="cr">Cr Woody Chan 400</span></td><td><span class="chipA">Assets ↑</span><span class="chipA">Assets ↓</span></td></tr>
+    <tr><td>Borrowed $1 000 from Barry Chow, into bank</td><td class="drcr">Dr Bank 1 000<br><span class="cr">Cr Loan from Barry Chow 1 000</span></td><td><span class="chipA">Assets ↑</span><span class="chipL">Liabilities ↑</span></td></tr>
+  </table></div>
+</section>
+
+<section id="t">
+  <div class="eyebrow">Ch.2 · B</div>
+  <h2>T-form account 怎樣寫</h2>
+  <div class="sheet">
+    <div class="ta" style="font-size:.9rem">
+      <div class="nm">Name of Account</div>
+      <div class="sides"><div><div class="ln"><span class="d">Date</span><span class="p">Particulars</span><span class="m">Amount ($)</span></div></div><div><div class="ln"><span class="d">Date</span><span class="p">Particulars</span><span class="m">Amount ($)</span></div></div></div>
+      <div class="lbl"><span>← Debit (Dr) side</span><span>Credit (Cr) side →</span></div>
+    </div>
+    <ul class="pts">
+      <li>Particulars 寫<b>對方帳戶的名</b>（write opposite account name），顯示兩個帳戶的關係。</li>
+      <li>Dr Bank / Cr Capital → Bank 帳的 Dr 邊寫「Capital」；Capital 帳的 Cr 邊寫「Bank」。</li>
+      <li>以 credit 交易的人用他的名開帳（例如 Marco Lau、Woody Chan）。</li>
+    </ul>
+  </div>
+  <p class="eyebrow">例：Chan House 全部帳戶（2021 年 1 月）</p>
+  <div class="taccts" id="chanLedger"></div>
+
+  <p class="eyebrow" style="margin-top:12px">例 2：Exercise 2 — Mr. Lam（2021 年 1 月）</p>
+  <div class="tbl"><table class="cards">
+    <tr><th>Date</th><th>Transaction</th><th>Double entry</th></tr>
+    <tr><td>Jan 1</td><td>Borrowed a loan of $150 000 from bank, deposited in the business bank account</td><td class="drcr">Dr Bank 150 000<br><span class="cr">Cr Bank loan 150 000</span></td></tr>
+    <tr><td>Jan 3</td><td>Mr. Lam, the owner, deposited $80 000 cash into the company</td><td class="drcr">Dr Cash 80 000<br><span class="cr">Cr Capital 80 000</span></td></tr>
+    <tr><td>Jan 5</td><td>Bought motor vans from Mr. Cheung for $53 800 in cash</td><td class="drcr">Dr Motor vans 53 800<br><span class="cr">Cr Cash 53 800</span></td></tr>
+    <tr><td>Jan 7</td><td>Repaid one-third of the amount owed to bank by cheque（150 000 ÷ 3）</td><td class="drcr">Dr Bank loan 50 000<br><span class="cr">Cr Bank 50 000</span></td></tr>
+    <tr><td>Jan 9</td><td>Sold two motor vans costing $10 760 each on credit to Mr. Fung（10 760 × 2）</td><td class="drcr">Dr Mr. Fung 21 520<br><span class="cr">Cr Motor vans 21 520</span></td></tr>
+    <tr><td>Jan 11</td><td>Bought motor vans on credit from Mr. Tsui for $42 500</td><td class="drcr">Dr Motor vans 42 500<br><span class="cr">Cr Mr. Tsui 42 500</span></td></tr>
+    <tr><td>Jan 13</td><td>Mr. Fung paid half of his debts in cash（21 520 ÷ 2）</td><td class="drcr">Dr Cash 10 760<br><span class="cr">Cr Mr. Fung 10 760</span></td></tr>
+    <tr><td>Jan 15</td><td>Mr. Lam contributed motor vans costing $3 500 into the business</td><td class="drcr">Dr Motor vans 3 500<br><span class="cr">Cr Capital 3 500</span></td></tr>
+  </table></div>
+  <div class="taccts" id="lamLedger"></div>
+  <p class="muted">注意：Bank 帳 Jan 7 的 particulars 要寫 <b>Bank loan</b>（對方帳戶），不是 bank。題目寫「one-third」、「half」、「each」時，要先計好金額。</p>
+</section>
+
+<section id="g">
+  <div class="eyebrow">Ch.2 (II)</div>
+  <h2>Treatment of Goods 貨物的處理 <span class="must">MUST</span></h2>
+  <div class="two">
+    <div class="box"><h3>Non-current assets</h3>
+      <ul class="pts"><li><span class="k">Long</span>-term benefit which will be used for <b>operation over 1 year</b></li><li>It will be classified as <span class="k">assets</span></li></ul></div>
+    <div class="box"><h3>Movement of goods 貨物</h3>
+      <ul class="pts"><li>Goods are <b>purchased or sold or returned</b> for the prime purpose of <span class="k">resale</span></li><li>It will be classified as <span class="k">capital</span>, because it will affect the <span class="k">profit or loss</span> for the owner</li></ul></div>
+  </div>
+  <div class="tbl"><table class="cards">
+    <tr><th>Key term</th><th>Meaning</th><th>Effect on capital</th><th>Dr / Cr</th></tr>
+    <tr><td><b>Purchases</b> 購貨</td><td><b>Goods bought</b> by the firm for the prime purpose of <b>resale</b></td><td><span class="chipC">−</span></td><td class="drcr">Dr</td></tr>
+    <tr><td><b>Sales</b> 銷貨</td><td><b>Goods sold</b> by the firm which were bought with prime intention of <b>resale</b></td><td><span class="chipC">+</span></td><td class="drcr">Cr</td></tr>
+    <tr><td><b>Returns outwards</b> 購貨退出</td><td>Goods <b>returned to suppliers</b> by the company</td><td><span class="chipC">+</span></td><td class="drcr">Cr</td></tr>
+    <tr><td><b>Returns inwards</b> 銷貨退回</td><td>Goods <b>returned from customers</b> to the company</td><td><span class="chipC">−</span></td><td class="drcr">Dr</td></tr>
+  </table></div>
+  <p class="muted">邏輯：這四個都當 Capital 帳。Capital 帳 Dr 邊＝減（loss），Cr 邊＝加（profit）。所以 Capital 減 → Dr；Capital 加 → Cr。</p>
+  <div class="tbl"><table class="cards">
+    <tr><th>情況</th><th>例子（2021）</th><th>Double entry</th><th>Effect</th></tr>
+    <tr><td>Cash purchases</td><td>Bought goods in cash for $500 on 1 Jan</td><td class="drcr">Dr Purchases 500<br><span class="cr">Cr Cash 500</span></td><td><span class="chipC">Capital ↓</span><span class="chipA">Assets ↓</span></td></tr>
+    <tr><td>Credit purchases</td><td>Bought goods on credit from Mr. Wong for $300 on 3 Jan</td><td class="drcr">Dr Purchases 300<br><span class="cr">Cr Mr. Wong 300</span></td><td><span class="chipC">Capital ↓</span><span class="chipL">Liabilities ↑</span></td></tr>
+    <tr><td>Repaid suppliers</td><td>Settled $200 owed to Mr. Wong in cash on 5 Jan</td><td class="drcr">Dr Mr. Wong 200<br><span class="cr">Cr Cash 200</span></td><td><span class="chipL">Liabilities ↓</span><span class="chipA">Assets ↓</span></td></tr>
+    <tr><td>Returns outwards</td><td>Returned goods costing $100 to Mr. Wong on 7 Jan</td><td class="drcr">Dr Mr. Wong 100<br><span class="cr">Cr Returns outwards 100</span></td><td><span class="chipL">Liabilities ↓</span><span class="chipC">Capital ↑</span></td></tr>
+    <tr><td>Cash sales</td><td>Sold goods in cash for $5 000 on 9 Jan</td><td class="drcr">Dr Cash 5 000<br><span class="cr">Cr Sales 5 000</span></td><td><span class="chipA">Assets ↑</span><span class="chipC">Capital ↑</span></td></tr>
+    <tr><td>Credit sales</td><td>Sold goods on credit to Mr. Au for $3 000 on 11 Jan</td><td class="drcr">Dr Mr. Au 3 000<br><span class="cr">Cr Sales 3 000</span></td><td><span class="chipA">Assets ↑</span><span class="chipC">Capital ↑</span></td></tr>
+    <tr><td>Received from customers</td><td>Mr. Au settled $2 000 in cash on 13 Jan</td><td class="drcr">Dr Cash 2 000<br><span class="cr">Cr Mr. Au 2 000</span></td><td><span class="chipA">Assets ↑</span><span class="chipA">Assets ↓</span></td></tr>
+    <tr><td>Returns inwards</td><td>Received goods returned by Mr. Au for $1 000 on 15 Jan</td><td class="drcr">Dr Returns inwards 1 000<br><span class="cr">Cr Mr. Au 1 000</span></td><td><span class="chipC">Capital ↓</span><span class="chipA">Assets ↓</span></td></tr>
+  </table></div>
+  <p class="eyebrow">寫成 T 帳</p>
+  <div class="taccts" id="goodsLedger"></div>
+</section>
+
+<!-- ================= CH.2 PRACTICE ================= -->
+<div class="chap" id="p"><div class="eyebrow">Chapter 2 · Practice</div><h2>Ch.2 練習</h2></div>
+
+<section id="p2">
+  <h2>Dr 定 Cr？揀正確的 double entry</h2>
+  <p class="muted">Ch.2 混合晒：Chan House、Mr. Cheung、Mr. Lam 同貨物（Purchases／Sales／Returns）一齊考。</p>
+  <div class="sheet">
+    <div class="score" id="drScore"></div>
+    <p class="tx" id="drTx"></p>
+    <p class="src" id="drSrc"></p>
+    <div class="opts" id="drOpts"></div>
+    <div class="fb" id="drFb" aria-live="polite"></div>
+    <button class="nextbtn" id="drNext" hidden>下一題 →</button>
+  </div>
+</section>
+
+<footer>內容只取自 F.3 ACF Ch.1 (p.2–12) 及 Ch.2 (p.3–12) 講義。</footer>
+</div>
+
+<script>
+(function(){
+  /* ---------- keyword cover toggle ---------- */
+  var btn=document.getElementById('coverBtn');
+  btn.addEventListener('click',function(){
+    var on=document.body.classList.toggle('cover');
+    btn.setAttribute('aria-pressed',on);
+    btn.textContent=on?'顯示全部':'遮住重點字';
+    document.querySelectorAll('.k').forEach(function(k){
+      k.classList.remove('show');
+      if(on){k.tabIndex=0;k.setAttribute('role','button');}else{k.removeAttribute('tabindex');k.removeAttribute('role');}
+    });
+  });
+  document.addEventListener('click',function(e){
+    var k=e.target.closest('.k'); if(k&&document.body.classList.contains('cover')) k.classList.toggle('show');
+  });
+  document.addEventListener('keydown',function(e){
+    var k=e.target.closest&&e.target.closest('.k');
+    if(k&&(e.key==='Enter'||e.key===' ')&&document.body.classList.contains('cover')){e.preventDefault();k.classList.toggle('show');}
+  });
+
+  /* ---------- T-accounts ---------- */
+  function fmt(n){return n.toLocaleString('en-US').replace(/,/g,' ');}
+  function side(rows){
+    return rows.map(function(r){return '<div class="ln"><span class="d">'+r[0]+'</span><span class="p">'+r[1]+'</span><span class="m">'+fmt(r[2])+'</span></div>';}).join('');
+  }
+  function tacct(a){
+    return '<div class="ta"><div class="nm '+(a.cls||'')+'">'+a.name+'</div><div class="lbl"><span>Dr</span><span>Cr</span></div><div class="sides"><div>'+side(a.dr)+'</div><div>'+side(a.cr)+'</div></div></div>';
+  }
+  var chan=[
+    {name:'Bank',cls:'A',dr:[['Jan 1','Capital',5000],['Jan 5','Machinery',500],['Jan 13','Loan from Barry Chow',1000]],cr:[['Jan 9','Marco Lau',500]]},
+    {name:'Cash',cls:'A',dr:[['Jan 1','Capital',2000],['Jan 11','Woody Chan',400]],cr:[['Jan 2','Machinery',1000]]},
+    {name:'Capital',cls:'C',dr:[],cr:[['Jan 1','Bank',5000],['Jan 1','Cash',2000]]},
+    {name:'Machinery',cls:'A',dr:[['Jan 2','Cash',1000],['Jan 3','Marco Lau',1500]],cr:[['Jan 5','Bank',500],['Jan 7','Woody Chan',1200]]},
+    {name:'Marco Lau',cls:'L',dr:[['Jan 9','Bank',500]],cr:[['Jan 3','Machinery',1500]]},
+    {name:'Woody Chan',cls:'A',dr:[['Jan 7','Machinery',1200]],cr:[['Jan 11','Cash',400]]},
+    {name:'Loan from Barry Chow',cls:'L',dr:[],cr:[['Jan 13','Bank',1000]]}
+  ];
+  var goods=[
+    {name:'Purchases',cls:'C',dr:[['Jan 1','Cash',500],['Jan 3','Mr. Wong',300]],cr:[]},
+    {name:'Mr. Wong (account payable)',cls:'L',dr:[['Jan 5','Cash',200],['Jan 7','Returns outwards',100]],cr:[['Jan 3','Purchases',300]]},
+    {name:'Returns outwards',cls:'C',dr:[],cr:[['Jan 7','Mr. Wong',100]]},
+    {name:'Sales',cls:'C',dr:[],cr:[['Jan 9','Cash',5000],['Jan 11','Mr. Au',3000]]},
+    {name:'Mr. Au (account receivable)',cls:'A',dr:[['Jan 11','Sales',3000]],cr:[['Jan 13','Cash',2000],['Jan 15','Returns inwards',1000]]},
+    {name:'Returns inwards',cls:'C',dr:[['Jan 15','Mr. Au',1000]],cr:[]}
+  ];
+  var lam=[
+    {name:'Bank',cls:'A',dr:[['Jan 1','Bank loan',150000]],cr:[['Jan 7','Bank loan',50000]]},
+    {name:'Bank loan',cls:'L',dr:[['Jan 7','Bank',50000]],cr:[['Jan 1','Bank',150000]]},
+    {name:'Cash',cls:'A',dr:[['Jan 3','Capital',80000],['Jan 13','Mr. Fung',10760]],cr:[['Jan 5','Motor vans',53800]]},
+    {name:'Capital',cls:'C',dr:[],cr:[['Jan 3','Cash',80000],['Jan 15','Motor vans',3500]]},
+    {name:'Motor vans',cls:'A',dr:[['Jan 5','Cash',53800],['Jan 11','Mr. Tsui',42500],['Jan 15','Capital',3500]],cr:[['Jan 9','Mr. Fung',21520]]},
+    {name:'Mr. Fung',cls:'A',dr:[['Jan 9','Motor vans',21520]],cr:[['Jan 13','Cash',10760]]},
+    {name:'Mr. Tsui',cls:'L',dr:[],cr:[['Jan 11','Motor vans',42500]]}
+  ];
+  document.getElementById('chanLedger').innerHTML=chan.map(tacct).join('');
+  document.getElementById('lamLedger').innerHTML=lam.map(tacct).join('');
+  document.getElementById('goodsLedger').innerHTML=goods.map(tacct).join('');
+
+  /* ---------- SOFP step-by-step ---------- */
+  var SF=[
+    '',
+    '第 1 步：寫標題。第一行寫老闆名字 Mr. Chan；第二行寫「Statement of Financial Position as at 31 January 2021」。然後畫兩條 $ 欄。',
+    '第 2 步：Non-current assets。Machines = 1 000 + 1 500 − 500 − 1 200 = 800，寫在右欄。只有這一項，所以 800 就是 TNA。',
+    '第 3 步：Current assets 按次序寫在左欄：Accounts receivable 800 → Bank 6 000 → Cash 1 400，最後一個數畫單線。',
+    '第 4 步：TCA = 800 + 6 000 + 1 400 = 8 200，寫在右欄，跟 Cash 同一行，畫單線。',
+    '第 5 步：BAL = TNA + TCA = 800 + 8 200 = 9 000，畫雙線。資產部分完成。',
+    '第 6 步：寫「Financed by:」，然後 Capital as at 31 January 2021 = 5 000 + 2 000 = 7 000（CAP），寫在右欄。',
+    '第 7 步：Non-current liabilities：Loan from Barry Chow 1 000（repayable in 2025，超過 12 個月），這就是 TNL。',
+    '第 8 步：Current liabilities：Accounts payable = 1 500 − 500 = 1 000（TCL），畫單線。',
+    '第 9 步：BAL = CAP + TNL + TCL = 7 000 + 1 000 + 1 000 = 9 000，畫雙線。兩個 BAL 都是 9 000，做對了 ✓'
+  ];
+  var sfCells=document.querySelectorAll('.build td[data-s]'),sfStep=SF.length-1,sfAll=true;
+  var sfNo=document.getElementById('sfNo'),sfNote=document.getElementById('sfNote'),sfPrev=document.getElementById('sfPrev'),sfNext=document.getElementById('sfNext');
+  function sfDraw(){
+    sfCells.forEach(function(td){
+      var s=+td.dataset.s;
+      td.classList.toggle('fut',!sfAll&&s>sfStep);
+      td.classList.toggle('cur',!sfAll&&s===sfStep);
+    });
+    sfNo.textContent=sfAll?'完整答案':'第 '+sfStep+' / '+(SF.length-1)+' 步';
+    sfNote.textContent=sfAll?'這是完整答案。按「由第 1 步開始」，看一步步怎樣畫。':SF[sfStep];
+    sfPrev.disabled=sfAll||sfStep<=1; sfNext.disabled=sfAll||sfStep>=SF.length-1;
+  }
+  document.getElementById('sfStart').addEventListener('click',function(){sfAll=false;sfStep=1;sfDraw();});
+  sfPrev.addEventListener('click',function(){if(sfStep>1){sfStep--;sfDraw();}});
+  sfNext.addEventListener('click',function(){if(sfStep<SF.length-1){sfStep++;sfDraw();}});
+  sfDraw();
+
+  function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+  /* ---------- ① classify ---------- */
+  var BINS=[['NCA','Non-current assets','nA'],['CA','Current assets','nA'],['NCL','Non-current liabilities','nL'],['CL','Current liabilities','nL'],['CAP','Capital','nC']];
+  var ITEMS=[['Land and Buildings','NCA'],['Premises','NCA'],['Plant and Machinery','NCA'],['Furniture and Fixtures','NCA'],['Office Equipment','NCA'],['Motor Vans','NCA'],
+    ['Inventory','CA'],['Accounts receivable','CA'],['Bank','CA'],['Cash','CA'],
+    ['Bank loan','NCL'],['Loan from Barry Chow (repayable in 2025)','NCL'],['Accounts payable','CL'],['Capital','CAP']];
+  var sortQ=shuffle(ITEMS.slice()),sortI=0,sortOk=0,sortBusy=false;
+  var sItem=document.getElementById('sortItem'),sFb=document.getElementById('sortFb'),sSc=document.getElementById('sortScore');
+  document.getElementById('sortBins').innerHTML=BINS.map(function(b){return '<button class="bin '+b[2]+'" data-k="'+b[0]+'">'+b[1]+'</button>';}).join('');
+  function sortShow(){
+    if(sortI>=sortQ.length){sItem.textContent='完成！'+sortOk+' / '+sortQ.length;sFb.innerHTML='<button class="nextbtn" id="sortAgain">再玩一次</button>';
+      document.getElementById('sortAgain').onclick=function(){sortQ=shuffle(ITEMS.slice());sortI=0;sortOk=0;sFb.textContent='';sortShow();};sSc.textContent='';return;}
+    sItem.textContent=sortQ[sortI][0];sSc.textContent='第 '+(sortI+1)+' / '+sortQ.length+' 個　答對 '+sortOk;
+  }
+  document.getElementById('sortBins').addEventListener('click',function(e){
+    var b=e.target.closest('.bin'); if(!b||sortBusy||sortI>=sortQ.length) return;
+    var ans=sortQ[sortI][1],name=BINS.filter(function(x){return x[0]===ans;})[0][1];
+    if(b.dataset.k===ans){sortOk++;sFb.className='fb ok';sFb.textContent='✓ 對！';}
+    else{sFb.className='fb no';sFb.textContent='✗ 應該是 '+name;}
+    sortBusy=true;setTimeout(function(){sortBusy=false;sortI++;sFb.textContent='';sortShow();},b.dataset.k===ans?650:1500);
+  });
+  sortShow();
+
+  /* ---------- Ch.2 Dr / Cr drill ---------- */
+  var TX=[
+    ['Mr. Chan, the owner of Chan House, deposited $5 000 of cheque into Chan House.','Bank','Capital','Assets ↑ / Capital ↑','Chan House'],
+    ['Mr. Chan, the owner, deposited $2 000 cash into Chan House.','Cash','Capital','Assets ↑ / Capital ↑','Chan House'],
+    ['The company bought some machines for $1 000 in cash.','Machinery','Cash','Assets ↑ / Assets ↓','Chan House'],
+    ['The company bought some machines on credit from Marco Lau for $1 500.','Machinery','Marco Lau','Assets ↑ / Liabilities ↑','Chan House'],
+    ['The company sold some machines costing $500 by cheque.','Bank','Machinery','Assets ↑ / Assets ↓','Chan House'],
+    ['The company sold some machines costing $1 200 on credit to Woody Chan.','Woody Chan','Machinery','Assets ↑ / Assets ↓','Chan House'],
+    ['The company repaid $500 owed to Marco Lau by cheque.','Marco Lau','Bank','Liabilities ↓ / Assets ↓','Chan House'],
+    ['Woody Chan paid the company $400 in cash.','Cash','Woody Chan','Assets ↑ / Assets ↓','Chan House'],
+    ['The company borrowed a loan of $1 000 from Barry Chow and deposited it into the bank account.','Bank','Loan from Barry Chow','Assets ↑ / Liabilities ↑','Chan House'],
+    ['Mr. Cheung, the owner, started the business and put $50 000 cash into the company.','Cash','Capital','Assets ↑ / Capital ↑','Mr. Cheung'],
+    ['The company bought some motor vehicles on credit from Mr. Wu for $30 000.','Motor vehicles','Mr. Wu','Assets ↑ / Liabilities ↑','Mr. Cheung'],
+    ['The company borrowed $150 000 loan from bank which was deposited in the business bank account.','Bank','Bank loan','Assets ↑ / Liabilities ↑','Mr. Cheung'],
+    ['The company sold some motor vehicles costing $12 000 in cash.','Cash','Motor vehicles','Assets ↑ / Assets ↓','Mr. Cheung'],
+    ['The company sold some motor vehicles costing $1 500 on credit to Mr. Wong.','Mr. Wong','Motor vehicles','Assets ↑ / Assets ↓','Mr. Cheung'],
+    ['The company transferred cash of $3 000 into the bank account.','Bank','Cash','Assets ↑ / Assets ↓','Mr. Cheung'],
+    ['The company repaid the liabilities to Mr. Wu for $9 500 by cheque.','Mr. Wu','Bank','Liabilities ↓ / Assets ↓','Mr. Cheung'],
+    ['Mr. Wong paid half of his debts ($750) by cheque.','Bank','Mr. Wong','Assets ↑ / Assets ↓','Mr. Cheung'],
+    ['Mr. Lam, the owner, deposited $80 000 cash into the company.','Cash','Capital','Assets ↑ / Capital ↑','Mr. Lam'],
+    ['The company bought some motor vans from Mr. Cheung for $53 800 in cash.','Motor vans','Cash','Assets ↑ / Assets ↓','Mr. Lam'],
+    ['The company repaid one-third of the amount owed to bank by cheque.','Bank loan','Bank','Liabilities ↓ / Assets ↓','Mr. Lam'],
+    ['The company sold two motor vans costing $10 760 each on credit to Mr. Fung.','Mr. Fung','Motor vans','Assets ↑ / Assets ↓','Mr. Lam'],
+    ['The company bought some motor vans on credit from Mr. Tsui for $42 500.','Motor vans','Mr. Tsui','Assets ↑ / Liabilities ↑','Mr. Lam'],
+    ['Mr. Fung paid half of his debts in cash.','Cash','Mr. Fung','Assets ↑ / Assets ↓','Mr. Lam'],
+    ['Mr. Lam, the owner, contributed some motor vans costing $3 500 into the business.','Motor vans','Capital','Assets ↑ / Capital ↑','Mr. Lam'],
+    ['Bought goods in cash for $500.','Purchases','Cash','Capital ↓ / Assets ↓','Treatment of goods'],
+    ['Bought goods on credit from Mr. Wong for $300.','Purchases','Mr. Wong','Capital ↓ / Liabilities ↑','Treatment of goods'],
+    ['Settled $200 owed to Mr. Wong in cash.','Mr. Wong','Cash','Liabilities ↓ / Assets ↓','Treatment of goods'],
+    ['Returned goods costing $100 to Mr. Wong.','Mr. Wong','Returns outwards','Liabilities ↓ / Capital ↑','Treatment of goods'],
+    ['Sold goods in cash for $5 000.','Cash','Sales','Assets ↑ / Capital ↑','Treatment of goods'],
+    ['Sold goods on credit to Mr. Au for $3 000.','Mr. Au','Sales','Assets ↑ / Capital ↑','Treatment of goods'],
+    ['Mr. Au settled $2 000 in cash.','Cash','Mr. Au','Assets ↑ / Assets ↓','Treatment of goods'],
+    ['Received goods returned by Mr. Au for $1 000.','Returns inwards','Mr. Au','Capital ↓ / Assets ↓','Treatment of goods']
+  ];
+  var drQ=shuffle(TX.slice()),drI=0,drOk=0;
+  var dTx=document.getElementById('drTx'),dSrc=document.getElementById('drSrc'),dOpts=document.getElementById('drOpts'),dFb=document.getElementById('drFb'),dNext=document.getElementById('drNext'),dSc=document.getElementById('drScore');
+  function pairKey(p){return p[0]+'|'+p[1];}
+  function drShow(){
+    if(drI>=drQ.length){drQ=shuffle(TX.slice());drI=0;drOk=0;}
+    var t=drQ[drI],right=[t[1],t[2]];
+    var opts=[right,[t[2],t[1]]],seen={};seen[pairKey(right)]=1;seen[pairKey(opts[1])]=1;
+    shuffle(TX.slice()).forEach(function(o){
+      if(opts.length>=4) return;
+      var cand=Math.random()<.5?[t[1],o[2]]:[o[1],t[2]];
+      if(cand[0]===cand[1]||seen[pairKey(cand)]) return;
+      seen[pairKey(cand)]=1;opts.push(cand);
+    });
+    shuffle(opts);
+    dSc.textContent='第 '+(drI+1)+' / '+drQ.length+' 題　答對 '+drOk;
+    dTx.textContent=t[0];dSrc.textContent=t[4];dFb.textContent='';dFb.className='fb';dNext.hidden=true;
+    dOpts.innerHTML=opts.map(function(o,i){
+      return '<button class="opt" data-ok="'+(pairKey(o)===pairKey(right)?1:0)+'"><span class="let">'+'ABCD'[i]+'</span><span class="drcr">Dr '+o[0]+'<br><span class="cr">Cr '+o[1]+'</span></span></button>';
+    }).join('');
+  }
+  dOpts.addEventListener('click',function(e){
+    var b=e.target.closest('.opt'); if(!b||b.disabled) return;
+    var t=drQ[drI],good=b.dataset.ok==='1';
+    dOpts.querySelectorAll('.opt').forEach(function(o){o.disabled=true;if(o.dataset.ok==='1')o.classList.add('right');});
+    if(good){drOk++;}else{b.classList.add('wrong');}
+    dFb.className='fb '+(good?'ok':'no');
+    dFb.textContent=(good?'✓ 對！':'✗ 答案：Dr '+t[1]+' / Cr '+t[2]+'。')+'　Effect：'+t[3];
+    dSc.textContent='第 '+(drI+1)+' / '+drQ.length+' 題　答對 '+drOk;
+    dNext.hidden=false;dNext.focus();
+  });
+  dNext.addEventListener('click',function(){drI++;drShow();});
+  drShow();
+
+  /* ---------- ② Ch.1 effect drill ---------- */
+  var EFO={AC:'Assets ↑　Capital ↑',AA:'Assets ↑　Assets ↓（一加一減）',AL:'Assets ↑　Liabilities ↑',LA:'Assets ↓　Liabilities ↓'};
+  var EF=[
+    ['Mr. Chan, the owner of Chan House, deposited $5 000 of cheque into Chan House.','AC','Bank +5 000，Capital +5 000','Chan House'],
+    ['Mr. Chan, the owner of Chan House, deposited $2 000 cash into Chan House.','AC','Cash +2 000，Capital +2 000','Chan House'],
+    ['The company bought some machines for $1 000 in cash.','AA','Machines +1 000，Cash −1 000','Chan House'],
+    ['The company bought some machines on credit from Marco Lau for $1 500.','AL','Machines +1 500，Accounts payable: Marco Lau +1 500','Chan House'],
+    ['The company sold some machines costing $500 by cheque.','AA','Machines −500，Bank +500','Chan House'],
+    ['The company sold some machines costing $1 200 on credit to Woody Chan.','AA','Machines −1 200，Accounts receivable: Woody Chan +1 200','Chan House'],
+    ['The company repaid $500 owed to Marco Lau by cheque.','LA','Bank −500，Accounts payable: Marco Lau −500','Chan House'],
+    ['Woody Chan paid the company $400 in cash.','AA','Cash +400，Accounts receivable: Woody Chan −400','Chan House'],
+    ['The company borrowed a loan of $1 000 from Barry Chow which was deposited into the bank (repayable in 2025).','AL','Bank +1 000，Loan from Barry Chow +1 000','Chan House'],
+    ['Mr. Cheung, the owner, started the business and put $50 000 cash into the company.','AC','Cash +50 000，Capital +50 000','Exercise 3a · Mr. Cheung'],
+    ['The company bought some motor vehicles on credit from Mr. Wu for $30 000.','AL','Motor vehicles +30 000，Accounts payable: Mr. Wu +30 000','Exercise 3a · Mr. Cheung'],
+    ['The company borrowed $150 000 loan from bank which was deposited in the business bank account.','AL','Bank +150 000，Bank loan +150 000','Exercise 3a · Mr. Cheung'],
+    ['The company sold some motor vehicles costing $12 000 in cash.','AA','Motor vehicles −12 000，Cash +12 000','Exercise 3a · Mr. Cheung'],
+    ['The company sold some motor vehicles costing $1 500 on credit to Mr. Wong.','AA','Motor vehicles −1 500，Accounts receivable: Mr. Wong +1 500','Exercise 3a · Mr. Cheung'],
+    ['The company transferred cash of $3 000 into the bank account.','AA','Cash −3 000，Bank +3 000','Exercise 3a · Mr. Cheung'],
+    ['The company repaid the liabilities to Mr. Wu for $9 500 by cheque.','LA','Bank −9 500，Accounts payable: Mr. Wu −9 500','Exercise 3a · Mr. Cheung'],
+    ['Mr. Wong paid half of his debts by cheque.','AA','Bank +750，Accounts receivable: Mr. Wong −750','Exercise 3a · Mr. Cheung']
+  ];
+  var efQ=shuffle(EF.slice()),efI=0,efOk=0;
+  var eTx=document.getElementById('efTx'),eSrc=document.getElementById('efSrc'),eOpts=document.getElementById('efOpts'),eFb=document.getElementById('efFb'),eNext=document.getElementById('efNext'),eSc=document.getElementById('efScore');
+  function efShow(){
+    if(efI>=efQ.length){efQ=shuffle(EF.slice());efI=0;efOk=0;}
+    var t=efQ[efI];
+    eSc.textContent='第 '+(efI+1)+' / '+efQ.length+' 題　答對 '+efOk;
+    eTx.textContent=t[0];eSrc.textContent=t[3];eFb.textContent='';eFb.className='fb';eNext.hidden=true;
+    eOpts.innerHTML=Object.keys(EFO).map(function(k,i){return '<button class="opt" data-k="'+k+'"><span class="let">'+'ABCD'[i]+'</span><span>'+EFO[k]+'</span></button>';}).join('');
+  }
+  eOpts.addEventListener('click',function(e){
+    var b=e.target.closest('.opt'); if(!b||b.disabled) return;
+    var t=efQ[efI],good=b.dataset.k===t[1];
+    eOpts.querySelectorAll('.opt').forEach(function(o){o.disabled=true;if(o.dataset.k===t[1])o.classList.add('right');});
+    if(good){efOk++;}else{b.classList.add('wrong');}
+    eFb.className='fb '+(good?'ok':'no');
+    eFb.textContent=(good?'✓ 對！':'✗ 答案：'+EFO[t[1]]+'。')+'　'+t[2];
+    eSc.textContent='第 '+(efI+1)+' / '+efQ.length+' 題　答對 '+efOk;
+    eNext.hidden=false;eNext.focus();
+  });
+  eNext.addEventListener('click',function(){efI++;efShow();});
+  efShow();
+
+  /* ---------- ③ MCQ ---------- */
+  var MCQ=[
+    ['Classwork 1','The first step of the accounting process is',['recording transactions.','processing data.','summarizing information.','communicating information.'],0,'4 個功能次序：Recording → Classifying → Summarizing → Communicating。'],
+    ['Classwork 1','Which of the following is not a function of accounting?',['Monitoring the performance of the staff','Classifying business transactions','Summarizing business transactions','Communicating the performance of the company to different users'],0,'監察員工表現不是會計功能。'],
+    ['Classwork 1','Mr. Siu is a sole trader. Which of the following transactions should be recorded in the books of his firm?',['He suffered a loss from his personal investments.','He withdrew cash from the company for his personal use.','He borrowed money from a bank for private use.','He bought a piece of equipment with his own money for private use.'],1,'Business entity concept：只有 drawings（從公司拿錢）影響公司，要記。其他都是私人交易。'],
+    ['Classwork 1','Which of the following is expressed in monetary terms in the accounting records?',['Staff loyalty','Bank deposit','Business image','Customers’ relationship'],1,'Money measurement concept：只有 Bank deposit 可以用錢表示。'],
+    ['Classwork 2','Which of the following is not a liability of a business?',['Accounts payable','Bank loan','Loan from outsiders','Premises'],3,'Premises 是 non-current asset，不是負債。'],
+    ['Classwork 2','Which of the following best describes non-current liabilities?',['They are liabilities that have to be repaid within 6 months.','They are short-term liabilities.','They are liabilities that do not have to be repaid within 12 months.','They are account payable.'],2,'Non-current liabilities：amounts due over 12 months。'],
+    ['Classwork 2','Which of the following accounting equation(s) is/are correct?<br>(1) Assets − Liabilities = Capital<br>(2) Non-current assets + Current assets = Capital + Total liabilities<br>(3) Total liabilities + Total assets = Capital',['(2) only','(1) and (2) only','(1) and (3) only','(2) and (3) only'],1,'(3) 錯：應該是 Total liabilities + Capital = Total assets。'],
+    ['Classwork 2','A company bought some machines on credit from the supplier. Which of the following were the effects on current assets and current liabilities?',['Current assets: Increase · Current liabilities: Increase','Current assets: Increase · Current liabilities: No change','Current assets: No change · Current liabilities: Increase','Current assets: No change · Current liabilities: No change'],2,'Machines 是 non-current asset，所以 current assets 不變；欠 supplier 錢 → accounts payable（current liability）增加。']
+  ];
+  var box=document.getElementById('mcq');
+  box.innerHTML=MCQ.map(function(q,i){
+    return '<div class="sheet q" data-i="'+i+'"><p class="src">'+q[0]+' · Q'+(i+1)+'</p><p class="stem">'+q[1]+'</p><div class="opts">'+
+      q[2].map(function(o,j){return '<button class="opt" data-j="'+j+'"><span class="let">'+'ABCD'[j]+'</span><span>'+o+'</span></button>';}).join('')+
+      '</div><p class="why" hidden></p></div>';
+  }).join('');
+  box.addEventListener('click',function(e){
+    var b=e.target.closest('.opt'); if(!b||b.disabled) return;
+    var card=b.closest('.q'),q=MCQ[+card.dataset.i],j=+b.dataset.j;
+    card.querySelectorAll('.opt').forEach(function(o){o.disabled=true;if(+o.dataset.j===q[3])o.classList.add('right');});
+    if(j!==q[3]) b.classList.add('wrong');
+    var w=card.querySelector('.why');w.hidden=false;w.textContent=(j===q[3]?'✓ 對！':'✗ 答案是 '+'ABCD'[q[3]]+'。')+q[4];
+  });
+})();
+</script>
+</html>
